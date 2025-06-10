@@ -1,86 +1,39 @@
 import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
-import * as Yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import {
+  UseFormReset,
+  Control,
+  UseFormHandleSubmit,
+  FieldErrors,
+} from "react-hook-form";
 import ControlledInput from "@components/field/ControlledInput";
 import { TProteins } from "CommonTypes";
 import "./ProteinForm.scss";
 
 interface IProteinFormProps {
-  cbHandleSetProteins: (value: TProteins | null) => void;
+  control: Control<TProteins>;
+  handleSubmit: UseFormHandleSubmit<TProteins>;
+  reset: UseFormReset<TProteins>;
+  errors: FieldErrors<TProteins>;
 }
 
-const ProteinForm = ({ cbHandleSetProteins }: IProteinFormProps) => {
+const ProteinForm = ({
+  control,
+  handleSubmit,
+  reset,
+  errors,
+}: IProteinFormProps) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const allowedCharacters = [
-    "A",
-    "R",
-    "N",
-    "D",
-    "C",
-    "E",
-    "Q",
-    "G",
-    "H",
-    "I",
-    "L",
-    "K",
-    "M",
-    "F",
-    "P",
-    "S",
-    "T",
-    "W",
-    "Y",
-    "V",
-    "-",
-  ];
-
-  const allowedCharactersRegex = new RegExp(
-    `^[${allowedCharacters.join("")}]+$`
-  );
-
-  const validationSchema = Yup.object().shape({
-    protein1: Yup.string()
-      .required("Введите последовательность аминокислот")
-      .test(
-        "is-valid",
-        "Введено недопустимое значение в аминокислотной последовательности",
-        (value) => allowedCharactersRegex.test(value!)
-      ),
-    protein2: Yup.string()
-      .required("Введите последовательность аминокислот")
-      .test(
-        "is-valid",
-        "Введено недопустимое значение в аминокислотной последовательности",
-        (value) => allowedCharactersRegex.test(value!)
-      )
-      .test("match", "Длина последовательностей отличается", function (value) {
-        const { protein1 } = this.parent;
-        return value && protein1 ? value.length === protein1.length : true;
-      }),
-  });
-
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm({
-    resolver: yupResolver(validationSchema),
-  });
-
   const submitProteins = (data: TProteins) => {
-    cbHandleSetProteins(data);
     setIsSubmitted(true);
+    sessionStorage.setItem("proteins", JSON.stringify(data));
   };
 
   const handleResetForm = () => {
     reset();
     setIsSubmitted(false);
-    cbHandleSetProteins(null);
+    sessionStorage.removeItem("proteins");
   };
 
   const proteinFields = [

@@ -23,7 +23,8 @@
       .aminoAcidItem {
         flex: 1 1 auto;
         text-align: center;
-        margin: 2px;
+        margin: 2px 0;
+        max-width: 20px;
       }
     }
   }
