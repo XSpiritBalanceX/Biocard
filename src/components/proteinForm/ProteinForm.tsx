@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
@@ -8,10 +8,12 @@ import { TProteins } from "CommonTypes";
 import "./ProteinForm.scss";
 
 interface IProteinFormProps {
-  cbHandleSetProteins: (value: TProteins) => void;
+  cbHandleSetProteins: (value: TProteins | null) => void;
 }
 
 const ProteinForm = ({ cbHandleSetProteins }: IProteinFormProps) => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const allowedCharacters = [
     "A",
     "R",
@@ -72,7 +74,13 @@ const ProteinForm = ({ cbHandleSetProteins }: IProteinFormProps) => {
 
   const submitProteins = (data: TProteins) => {
     cbHandleSetProteins(data);
+    setIsSubmitted(true);
+  };
+
+  const handleResetForm = () => {
     reset();
+    setIsSubmitted(false);
+    cbHandleSetProteins(null);
   };
 
   const proteinFields = [
@@ -103,9 +111,20 @@ const ProteinForm = ({ cbHandleSetProteins }: IProteinFormProps) => {
             error={el.error}
           />
         ))}
-        <Button type="submit" className="submitButton">
-          Сравнить
-        </Button>
+        <Box className="controlsButtonsBox">
+          <Button type="submit" className="submitButton">
+            Сравнить
+          </Button>
+          {isSubmitted && (
+            <Button
+              type="button"
+              onClick={handleResetForm}
+              className="resetButton"
+            >
+              Сбросить
+            </Button>
+          )}
+        </Box>
       </form>
     </Box>
   );

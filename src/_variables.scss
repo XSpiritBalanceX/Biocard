@@ -34,6 +34,17 @@ $theme-colors: (
   }
 }
 
+%button-blue {
+  color: rgb(255, 255, 255);
+  border: solid 1px #5e66a7;
+  background-color: #5e66a7;
+  &:hover {
+    color: rgb(255, 255, 255);
+    border: solid 1px #c5c5f0;
+    background-color: #c5c5f0;
+  }
+}
+
 %h1 {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;

@@ -2,26 +2,42 @@
 @use "../../variables";
 
 .formContainer {
-  max-width: 700px;
-  margin: 0 auto;
+  margin: 0;
+  width: 100%;
   .formTitle {
     @extend %h1;
-    text-align: center;
+    background-color: map.get(variables.$theme-colors, "white-blue");
     margin: 0 0 20px 0;
+    padding: 10px;
+    border-radius: 10px;
   }
   form {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  .submitButton {
-    width: 100%;
-    max-width: 50%;
-    text-transform: none;
-    @extend %body-1-medium;
-    @extend %button-with-border;
-    margin: 20px 0 0 0;
-    height: 40px;
-    border-radius: 10px;
+    max-width: 700px;
+    .controlsButtonsBox {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin: 20px 0 0 0;
+      .submitButton,
+      .resetButton {
+        width: 100%;
+        flex-basis: 48%;
+        text-transform: none;
+        height: 40px;
+        border-radius: 10px;
+        @extend %body-1-medium;
+      }
+      .submitButton {
+        @extend %button-with-border;
+      }
+      .resetButton {
+        @extend %button-blue;
+      }
+    }
   }
 }

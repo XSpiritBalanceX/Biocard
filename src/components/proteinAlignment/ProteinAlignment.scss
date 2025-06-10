@@ -7,5 +7,24 @@
   flex-direction: column;
   .alignmentTitle {
     @extend %h1;
+    background-color: map.get(variables.$theme-colors, "white-blue");
+    margin: 0 0 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  .proteinsBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    max-width: 300px;
+    .proteinRowBox {
+      display: flex;
+      width: 100%;
+      .aminoAcidItem {
+        flex: 1 1 auto;
+        text-align: center;
+        margin: 2px;
+      }
+    }
   }
 }

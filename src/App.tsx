@@ -12,7 +12,7 @@ const App = () => {
   return (
     <>
       <ProteinForm cbHandleSetProteins={setCurrentProteins} />
-      {currentProteins && <ProteinAlignment />}
+      <ProteinAlignment currentProteins={currentProteins} />
     </>
   );
 };
