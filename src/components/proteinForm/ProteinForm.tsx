@@ -4,9 +4,14 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ControlledInput from "@components/field/ControlledInput";
-import "./Form.scss";
+import { TProteins } from "CommonTypes";
+import "./ProteinForm.scss";
 
-const Form = () => {
+interface IProteinFormProps {
+  cbHandleSetProteins: (value: TProteins) => void;
+}
+
+const ProteinForm = ({ cbHandleSetProteins }: IProteinFormProps) => {
   const allowedCharacters = [
     "A",
     "R",
@@ -60,12 +65,14 @@ const Form = () => {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
 
-  const submitProteins = (data: { protein1: string; protein2: string }) => {
-    console.log(data);
+  const submitProteins = (data: TProteins) => {
+    cbHandleSetProteins(data);
+    reset();
   };
 
   const proteinFields = [
@@ -104,4 +111,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default ProteinForm;
