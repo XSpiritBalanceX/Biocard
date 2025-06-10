@@ -1,0 +1,77 @@
+@use "sass:map";
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&display=swap");
+
+$theme-colors: (
+  "main-blue": #5e66a7,
+  "white-blue": #e7e7ff,
+  "yellow": #ffea00,
+  "green": #67e4a6,
+  "grey": #c4c4c4,
+  "pink": #fc9cac,
+  "violet": #bb99ff,
+  "blue": #80dfff,
+  "white": rgb(255, 255, 255),
+  "red": #b30000,
+  "black": #101010,
+);
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map.get($map, $key);
+  }
+  @return $map;
+}
+
+%button-with-border {
+  color: #5e66a7;
+  border: solid 2px #5e66a7;
+  background-color: transparent;
+  &:hover {
+    color: #c5c5f0;
+    border: solid 2px #c5c5f0;
+    background-color: transparent;
+  }
+}
+
+%h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+%h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+%body-1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+%body-1-medium {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+%body-2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+%small-text {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+}

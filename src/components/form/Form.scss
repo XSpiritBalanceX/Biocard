@@ -1,0 +1,27 @@
+@use "sass:map";
+@use "../../variables";
+
+.formContainer {
+  max-width: 700px;
+  margin: 0 auto;
+  .formTitle {
+    @extend %h1;
+    text-align: center;
+    margin: 0 0 20px 0;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .submitButton {
+    width: 100%;
+    max-width: 50%;
+    text-transform: none;
+    @extend %body-1-medium;
+    @extend %button-with-border;
+    margin: 20px 0 0 0;
+    height: 40px;
+    border-radius: 10px;
+  }
+}

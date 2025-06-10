@@ -1,0 +1,48 @@
+@use "sass:map";
+@use "../../variables";
+
+.controlledFieldBox {
+  width: 100%;
+  .errorIcon,
+  .errorMessage {
+    color: map.get(variables.$theme-colors, "red");
+  }
+  .errorMessage {
+    @extend %small-text;
+    margin-bottom: 10px;
+  }
+  .controlledField {
+    width: 100%;
+    min-height: 40px;
+    background-color: map.get(variables.$theme-colors, "white");
+    border-radius: 10px;
+    .MuiInputBase-root.MuiInputBase-formControl {
+      border-radius: 10px;
+      @extend %body-1;
+      input {
+        padding: 0 15px;
+        color: map.get(variables.$theme-colors, "black");
+        &::placeholder {
+          @extend %body-2;
+          opacity: 1;
+        }
+      }
+      fieldset {
+        border: solid 2px map.get(variables.$theme-colors, "grey");
+      }
+    }
+
+    .MuiInputBase-root.MuiInputBase-formControl.Mui-error {
+      border: none;
+      fieldset {
+        border: solid 2px map.get(variables.$theme-colors, "red");
+      }
+    }
+    .MuiInputBase-root.MuiInputBase-formControl.Mui-focused {
+      border: none;
+      fieldset {
+        border: solid 2px map.get(variables.$theme-colors, "main-blue");
+      }
+    }
+  }
+}
