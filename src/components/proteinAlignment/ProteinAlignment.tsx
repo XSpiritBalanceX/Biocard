@@ -13,6 +13,13 @@ const ProteinAlignment = ({ currentProteins }: IProteinAlignmentProps) => {
     return allAminoAcid[aminoAcid] || {};
   };
 
+  const getColorForSecondProtein = (index: number) => {
+    const acid1: string = currentProteins.protein1[index] || "";
+    const acid2: string = currentProteins.protein2[index] || "";
+
+    return acid1 !== acid2 ? getAminoAcidColor(acid2) : {};
+  };
+
   return (
     <Box className="proteinsAlignmentBox">
       {(currentProteins.protein1 || currentProteins.protein2) && (
@@ -32,7 +39,11 @@ const ProteinAlignment = ({ currentProteins }: IProteinAlignmentProps) => {
         </Box>
         <Box className="proteinRowBox">
           {currentProteins.protein2?.split("").map((el, ind) => (
-            <span key={ind} className="aminoAcidItem">
+            <span
+              key={ind}
+              className="aminoAcidItem"
+              style={getColorForSecondProtein(ind)}
+            >
               {el}
             </span>
           ))}
