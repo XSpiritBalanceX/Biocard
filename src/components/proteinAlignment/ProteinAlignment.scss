@@ -1,0 +1,62 @@
+@use "sass:map";
+@use "../../variables";
+
+.messageSnack {
+  box-shadow: variables.map-deep-get(
+    variables.$theme-colors,
+    "box-shadow",
+    "shadow"
+  );
+  border-radius: 10px;
+  .MuiPaper-root {
+    background-color: map.get(variables.$theme-colors, "main-blue");
+    border-radius: 10px;
+    padding: 10px 16px;
+    .MuiSnackbarContent-message {
+      @extend %body-1;
+      text-align: center;
+    }
+  }
+}
+
+.proteinsAlignmentBox {
+  margin: 30px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  .alignmentTitle {
+    @extend %h1;
+    background-color: map.get(variables.$theme-colors, "white-blue");
+    margin: 0 0 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  .wrapper {
+    padding: 0 10px 20px;
+    border-radius: 10px;
+    border: solid 3px map.get(variables.$theme-colors, "grey");
+  }
+  .proteinsBox {
+    max-width: 100%;
+    word-break: break-word;
+    position: relative;
+    .firstProteinRow,
+    .secondProteinRow {
+      .aminoAcidItem {
+        letter-spacing: 6px;
+        font-family: monospace;
+        font-weight: 500;
+        font-size: 18px;
+        padding: 0 0 2px 0;
+      }
+    }
+    .firstProteinRow {
+      line-height: 53px;
+    }
+    .secondProteinRow {
+      position: absolute;
+      top: 23px;
+      left: 0;
+      line-height: 53px;
+    }
+  }
+}

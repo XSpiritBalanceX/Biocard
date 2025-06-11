@@ -1,0 +1,43 @@
+@use "sass:map";
+@use "../../variables";
+
+.formContainer {
+  margin: 0;
+  width: 100%;
+  .formTitle {
+    @extend %h1;
+    background-color: map.get(variables.$theme-colors, "white-blue");
+    margin: 0 0 20px 0;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 700px;
+    .controlsButtonsBox {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin: 20px 0 0 0;
+      .submitButton,
+      .resetButton {
+        width: 100%;
+        flex-basis: 48%;
+        text-transform: none;
+        height: 40px;
+        border-radius: 10px;
+        @extend %body-1-medium;
+      }
+      .submitButton {
+        @extend %button-with-border;
+      }
+      .resetButton {
+        @extend %button-blue;
+      }
+    }
+  }
+}
