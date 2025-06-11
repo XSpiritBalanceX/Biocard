@@ -35,6 +35,9 @@ const ProteinAlignment = ({ currentProteins }: IProteinAlignmentProps) => {
             .writeText(sequence)
             .then(() => {
               setIsOpenSnack(true);
+              setTimeout(() => {
+                selection.removeAllRanges();
+              }, 0);
             })
             .catch((err) => console.log(err));
         }
@@ -53,13 +56,6 @@ const ProteinAlignment = ({ currentProteins }: IProteinAlignmentProps) => {
   const handleCloseSnack = () => {
     setIsOpenSnack(false);
   };
-
-  if (
-    (!currentProteins.protein1 || !currentProteins.protein2) &&
-    currentProteins.protein1?.length === currentProteins.protein2?.length
-  ) {
-    return null;
-  }
 
   return (
     <>

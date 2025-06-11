@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import ProteinForm from "@components/proteinForm/ProteinForm";
 import ProteinAlignment from "@components/proteinAlignment/ProteinAlignment";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { allAminoAcid } from "@utils/aminoAcid";
+import { TProteins } from "CommonTypes";
 import "./App.scss";
 
 const App = () => {
+  const [currentProteins, setCurrentProteins] = useState<null | TProteins>(
+    null
+  );
+
   const allowedCharacters = Object.keys(allAminoAcid).join("") + "-";
 
   const allowedCharactersRegex = new RegExp(`^[${allowedCharacters}]+$`);
@@ -38,9 +43,9 @@ const App = () => {
     handleSubmit,
     formState: { errors },
     reset,
-    getValues,
   } = useForm({
     resolver: yupResolver(validationSchema),
+    reValidateMode: "onSubmit",
   });
 
   return (
@@ -50,9 +55,10 @@ const App = () => {
         handleSubmit={handleSubmit}
         reset={reset}
         errors={errors}
+        cbHandleSetProteins={setCurrentProteins}
       />
-      {Object.keys(errors).length === 0 && (
-        <ProteinAlignment currentProteins={getValues()} />
+      {currentProteins && Object.keys(errors).length === 0 && (
+        <ProteinAlignment currentProteins={currentProteins} />
       )}
     </>
   );

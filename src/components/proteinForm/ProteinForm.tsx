@@ -15,6 +15,7 @@ interface IProteinFormProps {
   handleSubmit: UseFormHandleSubmit<TProteins>;
   reset: UseFormReset<TProteins>;
   errors: FieldErrors<TProteins>;
+  cbHandleSetProteins: (value: TProteins | null) => void;
 }
 
 const ProteinForm = ({
@@ -22,18 +23,19 @@ const ProteinForm = ({
   handleSubmit,
   reset,
   errors,
+  cbHandleSetProteins,
 }: IProteinFormProps) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const submitProteins = (data: TProteins) => {
     setIsSubmitted(true);
-    sessionStorage.setItem("proteins", JSON.stringify(data));
+    cbHandleSetProteins(data);
   };
 
   const handleResetForm = () => {
     reset();
     setIsSubmitted(false);
-    sessionStorage.removeItem("proteins");
+    cbHandleSetProteins(null);
   };
 
   const proteinFields = [
