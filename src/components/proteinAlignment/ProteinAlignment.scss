@@ -1,6 +1,24 @@
 @use "sass:map";
 @use "../../variables";
 
+.messageSnack {
+  box-shadow: variables.map-deep-get(
+    variables.$theme-colors,
+    "box-shadow",
+    "shadow"
+  );
+  border-radius: 10px;
+  .MuiPaper-root {
+    background-color: map.get(variables.$theme-colors, "main-blue");
+    border-radius: 10px;
+    padding: 10px 16px;
+    .MuiSnackbarContent-message {
+      @extend %body-1;
+      text-align: center;
+    }
+  }
+}
+
 .proteinsAlignmentBox {
   margin: 30px 0 0 0;
   display: flex;

@@ -15,6 +15,11 @@ $theme-colors: (
   "white": rgb(255, 255, 255),
   "red": #b30000,
   "black": #101010,
+  "box-shadow": (
+    "shadow": (
+      10px 25px 15px rgba(0, 50, 132, 0.15),
+    ),
+  ),
 );
 
 @function map-deep-get($map, $keys...) {
