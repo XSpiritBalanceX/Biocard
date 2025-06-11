@@ -19,7 +19,11 @@ const App = () => {
         "is-valid",
         "Введено недопустимое значение в аминокислотной последовательности",
         (value) => allowedCharactersRegex.test(value!)
-      ),
+      )
+      .test("match", "Длина последовательностей отличается", function (value) {
+        const { protein2 } = this.parent;
+        return value && protein2 ? value.length === protein2.length : true;
+      }),
     protein2: Yup.string()
       .required("Введите последовательность аминокислот")
       .test(

@@ -20,33 +20,37 @@ const ProteinAlignment = ({ currentProteins }: IProteinAlignmentProps) => {
     return acid1 !== acid2 ? getAminoAcidColor(acid2) : {};
   };
 
+  if (!currentProteins.protein1 || !currentProteins.protein2) {
+    return null;
+  }
+
   return (
     <Box className="proteinsAlignmentBox">
-      {(currentProteins.protein1 || currentProteins.protein2) && (
-        <p className="alignmentTitle">Результаты сравнения:</p>
-      )}
-      <Box className="proteinsBox">
-        <Box className="proteinRowBox">
-          {currentProteins.protein1?.split("").map((el, ind) => (
-            <span
-              key={ind}
-              className="aminoAcidItem"
-              style={getAminoAcidColor(el)}
-            >
-              {el}
-            </span>
-          ))}
-        </Box>
-        <Box className="proteinRowBox">
-          {currentProteins.protein2?.split("").map((el, ind) => (
-            <span
-              key={ind}
-              className="aminoAcidItem"
-              style={getColorForSecondProtein(ind)}
-            >
-              {el}
-            </span>
-          ))}
+      <p className="alignmentTitle">Результаты сравнения:</p>
+      <Box className="wrapper">
+        <Box className="proteinsBox">
+          <Box className="firstProteinRow">
+            {currentProteins.protein1?.split("").map((acid, ind) => (
+              <span
+                key={ind}
+                className="aminoAcidItem"
+                style={getAminoAcidColor(acid)}
+              >
+                {acid}
+              </span>
+            ))}
+          </Box>
+          <Box className="secondProteinRow">
+            {currentProteins.protein2?.split("").map((acid, ind) => (
+              <span
+                key={ind}
+                className="aminoAcidItem"
+                style={getColorForSecondProtein(ind)}
+              >
+                {acid}
+              </span>
+            ))}
+          </Box>
         </Box>
       </Box>
     </Box>

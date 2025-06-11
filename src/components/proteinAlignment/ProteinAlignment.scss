@@ -12,20 +12,33 @@
     padding: 10px;
     border-radius: 10px;
   }
+  .wrapper {
+    padding: 0 10px 20px;
+    border-radius: 10px;
+    border: solid 3px map.get(variables.$theme-colors, "grey");
+  }
   .proteinsBox {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-    max-width: 300px;
-    .proteinRowBox {
-      display: flex;
-      width: 100%;
+    max-width: 100%;
+    word-break: break-word;
+    position: relative;
+    .firstProteinRow,
+    .secondProteinRow {
       .aminoAcidItem {
-        flex: 1 1 auto;
-        text-align: center;
-        margin: 2px 0;
-        max-width: 20px;
+        letter-spacing: 6px;
+        font-family: monospace;
+        font-weight: 500;
+        font-size: 18px;
+        padding: 0 0 2px 0;
       }
+    }
+    .firstProteinRow {
+      line-height: 53px;
+    }
+    .secondProteinRow {
+      position: absolute;
+      top: 23px;
+      left: 0;
+      line-height: 53px;
     }
   }
 }
